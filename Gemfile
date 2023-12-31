@@ -15,8 +15,7 @@ gem "sqlite3", "~> 1.4"
 gem "puma", ">= 5.0"
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
-gem "importmap-rails"
-
+gem 'importmap-rails'
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
 
@@ -65,3 +64,11 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+# Use Sass to process CSS [
+gem "cssbundling-rails"
+gem 'dartsass-rails', '~> 0.5.0'
+gem 'jquery-rails'
+gem 'popper_js', '~> 2.11.8'
+gem 'bootstrap', '~> 5.3.2'
+gem 'sassc-rails'
