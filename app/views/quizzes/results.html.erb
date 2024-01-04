@@ -1,0 +1,35 @@
+<!-- app/views/quizzes/results.html.erb -->
+<h2>クイズ結果</h2>
+<p>あなたの正解数: <%= @correct_answers_count %> / <%= @quiz.questions.count %></p>
+
+<% score_percentage = (@correct_answers_count.to_f / @quiz.questions.count) * 100 %>
+
+<% if @correct_answers_count == @quiz.questions.count %>
+  <p>おめでとうございます！満点です！画像あげます使ってね！！</p>
+  <% case @quiz.level %>
+  <% when 'beginner' %>
+    <%= link_to "Beginner Result", beginner_result_path %>
+  <% when 'intermediate' %>
+    <%= link_to "Intermediate Result", intermediate_result_path %>
+  <% when 'advanced' %>
+    <%= link_to "Advanced Result", advanced_result_path %>
+  <% when 'maniac' %>
+    <%= link_to "Maniac Result", maniac_result_path %>
+<% end %>
+  <!-- 満点の場合に画像を表示 -->
+<% elsif score_percentage >= 80 %>
+  <p>素晴らしい！あなたは爬虫類の知識が豊富ですね。</p>
+<% elsif score_percentage >= 50 %>
+  <p>良い試みです！もう少しで専門家になれますよ。</p>
+<% else %>
+  <p>落ち込まないで！！大丈夫！！残念賞あげます！！使ってね！！</p>
+   <%= image_tag "image.jpg", alt: "残念賞！" %>
+<% end %>
+
+<% @quiz.questions.each do |question| %>
+  <div>
+    <p><strong>問題:</strong> <%= question.content %></p>
+    <p><strong>あなたの回答:</strong> <%= @answers[question.id.to_s] ? Choice.find_by(id: @answers[question.id.to_s])&.content : "回答がありません" %></p>
+    <p><strong>正解:</strong> <%= question.choices.find_by(correct: true)&.content %></p>
+  </div>
+<% end %>

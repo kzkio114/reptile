@@ -1,0 +1,14 @@
+<!-- app/views/questions/show.html.erb -->
+
+<h1><%= @question.content %></h1>
+
+<%= form_with url: answer_quiz_question_path(@quiz, @question), method: :post do |form| %>
+  <% @question.choices.each do |choice| %>
+    <div>
+      <%= form.radio_button :answer, choice.id %>
+      <%= choice.content %>
+    </div>
+  <% end %>
+
+  <%= form.submit '回答する' %>
+<% end %>

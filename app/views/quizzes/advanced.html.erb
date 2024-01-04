@@ -1,0 +1,8 @@
+<!-- app/views/quizzes/advanced.html.erb -->
+<div class="container mt-5 mb-3">
+  <div class="row">
+    <div class="col-2 text-center">
+<h1>上級者向けクイズ</h1>
+<p>爬虫類の専門知識を試す時です！準備はいいですか？</p>
+<%= link_to 'クイズを開始する', quiz_question_path(@quiz, @quiz.questions.first), class: 'btn btn-primary' %>
+</div>

@@ -1,0 +1,11 @@
+<!-- app/views/questions/_question_form.html.erb -->
+<div class="quiz-question">
+  <p>問題：<%= question.content %></p>
+  <% question.choices.each do |choice| %>
+    <div>
+      <%= form.radio_button :answer, choice.id, id: "answer_#{choice.id}" %>
+      <%= form.label :answer, choice.content, value: choice.id %>
+    </div>
+  <% end %>
+</div>
+<%= form.submit '回答する' %>

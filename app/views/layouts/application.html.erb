@@ -5,8 +5,12 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
+  <!-- 他のスタイルシートと同じように custom.css を読み込む -->
+  
+
   <!-- Bootstrapのスタイルシートを追加 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
 
   <style>
     /* ページ全体の背景色 */
@@ -19,13 +23,42 @@
 }
 
     body {
-      background-color: #00FF01; /* 色をここで指定します。 */
+      background-image: url('image.png'); /* 背景画像のURLを指定 */
+      background-repeat: repeat;/* 色をここで指定します。 */
     }
+
+     /* 吹き出しのスタイル */
+.speech-bubble {
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  padding: 15px;
+  position: relative;
+}
+
+/* 吹き出しの尾のスタイル */
+.speech-bubble::after {
+  content: "";
+  position: absolute;
+  top: 50%; /* 上端から50%の位置 */
+  left: -19px; /* 左側に配置するために、要素の左端から-20pxの位置 */
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent #f8f8f8 transparent transparent; /* 右側に色を設定 */
+  transform: translateY(-50%); /* Y軸方向に-50%ずらして中央に配置 */
+}
+
+/* アイコンのスタイル */
+.speech-icon {
+  max-width: 100px; /* 幅を100pxに設定 */
+  height: auto; /* 高さは自動調整 */
+  margin-top: 5px; /* 上部に10pxのマージンを追加 */
+}
+
   </style>
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
-    <a class="navbar-brand" href="#">爬虫類、興味持ちませんか？？！！？？</a>
+    <a class="navbar-brand" href="/">今年は辰年です。辰ですし、爬虫類に興味持ちませんか？？！！？？</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -39,6 +72,7 @@
   </nav>
 
   <%= yield %>
+
 
   <!-- BootstrapのJavaScriptを追加 -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>

@@ -1,0 +1,4 @@
+<!-- app/views/quizzes/beginner.html.erb -->
+<h1>初級クイズ</h1>
+<p>とりあえず、爬虫類って何だろう？という感じの人向けです。</p>
+<%= link_to 'クイズを開始する', quiz_question_path(@quiz, @quiz.questions.first), class: 'btn btn-primary' %>
