@@ -70,5 +70,4 @@ gem "cssbundling-rails"
 gem 'dartsass-rails', '~> 0.5.0'
 gem 'jquery-rails'
 gem 'popper_js', '~> 2.11.8'
-gem 'bootstrap', '~> 5.3.2'
 gem 'sassc-rails'
