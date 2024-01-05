@@ -144,9 +144,9 @@ unless quiz_advanced.questions.exists?(content: "ヒョウモントカゲモド�
 
   unless quiz_maniac.questions.exists?(content: "アストロジャイアントダイビングスキンクは○○に多くおり、エサは○○を食べることもある")
     question = quiz_maniac.questions.create(content: "アストロジャイアントダイビングスキンクは○○に多くおり、エサは○○を食べることもある")
-    question.choices.create(content: "森林 果物", correct: true)  # 正解５
+    question.choices.create(content: "森林 果物", correct: false)  # 正解５
     question.choices.create(content: "地中 菌類", correct: false)
-    question.choices.create(content: "川辺 カニ", correct: false) 
+    question.choices.create(content: "川辺 カニ", correct: true) 
     question.choices.create(content: "砂漠 昆虫", correct: false)
   end
 
