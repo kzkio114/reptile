@@ -112,10 +112,10 @@ unless quiz_advanced.questions.exists?(content: "ヒョウモントカゲモド�
 
   #maniac
 
-  unless quiz_maniac.questions.exists?(content: "アミメミズベトカゲのオスはどっち？", image_url: "image.jpg")
-    question = quiz_maniac.questions.create(content: "アミメミズベトカゲのオスはどっち？", image_url: "image.jpg")
-    question.choices.create(content: "上", correct: true)  # 正解１
-    question.choices.create(content: "下", correct: false)
+  unless quiz_maniac.questions.exists?(content: "アミメミズベトカゲのオスはどっち？", image_url: "37518.jpg")
+    question = quiz_maniac.questions.create(content: "アミメミズベトカゲのオスはどっち？", image_url: "37518.jpg")
+    question.choices.create(content: "右", correct: true)  # 正解１
+    question.choices.create(content: "左", correct: false)
   end
 
   unless quiz_maniac.questions.exists?(content: "アミメミズベトカゲの生息地は、マダガスカル島の○○○に、分布して○○にいる事が多い")
