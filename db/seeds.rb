@@ -112,51 +112,87 @@ unless quiz_advanced.questions.exists?(content: "ヒョウモントカゲモド�
 
   #maniac
 
-  unless quiz_maniac.questions.exists?(content: "アミメミズベトカゲのオスはどっち？")
-    question = quiz_maniac.questions.create(content: "アミメミズベトカゲのオスはどっち？")
+  unless quiz_maniac.questions.exists?(content: "アミメミズベトカゲのオスはどっち？", image_url: "image.jpg")
+    question = quiz_maniac.questions.create(content: "アミメミズベトカゲのオスはどっち？", image_url: "image.jpg")
     question.choices.create(content: "上", correct: true)  # 正解１
     question.choices.create(content: "下", correct: false)
   end
 
   unless quiz_maniac.questions.exists?(content: "アミメミズベトカゲの生息地は、マダガスカル島の○○○に、分布して○○にいる事が多い")
     question = quiz_maniac.questions.create(content: "アミメミズベトカゲの生息地は、マダガスカル島の○○○に、分布して○○にいる事が多い")
-    question.choices.create(content: "南西部","森林", correct: false)  
-    question.choices.create(content: "南西部","水田" correct: false)
-    question.choices.create(content: "北西部","水田" correct: true) # 正解２
-    question.choices.create(content: "南西部","川辺" correct: false)
+    question.choices.create(content: "南西部 森林", correct: false)  
+    question.choices.create(content: "南西部 水田", correct: false)
+    question.choices.create(content: "北西部 水田", correct: true) # 正解２
+    question.choices.create(content: "南西部 川辺",correct: false)
   end
 
   unless quiz_maniac.questions.exists?(content: "アストロジャイアントダイビングスキンクの別名は？")
     question = quiz_maniac.questions.create(content: "アストロジャイアントダイビングスキンクの別名は？")
     question.choices.create(content: "アストロミズダイビングスキンク", correct: false)  
-    question.choices.create(content: "アストロラーべミズベトカゲ" correct: true)
-    question.choices.create(content: "アストロラーべアストロラーべトカゲ" correct: false) # 正解３
-    question.choices.create(content: "アストロジャイアントダイビングトカゲ" correct: false)
+    question.choices.create(content: "アストロラーべミズベトカゲ" , correct: true)
+    question.choices.create(content: "アストロラーべアストロラーべトカゲ", correct: false) # 正解３
+    question.choices.create(content: "アストロジャイアントダイビングトカゲ", correct: false)
   end
 
   unless quiz_maniac.questions.exists?(content: "アストロジャイアントダイビングスキンクの生息地は、マダガスカル島の○○○に、分布している事が多い")
     question = quiz_maniac.questions.create(content: "アストロジャイアントダイビングスキンクの生息地は、マダガスカル島の○○○に、分布している事が多い")
     question.choices.create(content: "東中部", correct: true)  # 正解４
-    question.choices.create(content: "南西部" correct: false)
-    question.choices.create(content: "北西部" correct: false) 
-    question.choices.create(content: "南中部" correct: false)
+    question.choices.create(content: "南西部", correct: false)
+    question.choices.create(content: "北西部", correct: false) 
+    question.choices.create(content: "南中部", correct: false)
   end
 
   unless quiz_maniac.questions.exists?(content: "アストロジャイアントダイビングスキンクは○○に多くおり、エサは○○を食べることもある")
     question = quiz_maniac.questions.create(content: "アストロジャイアントダイビングスキンクは○○に多くおり、エサは○○を食べることもある")
-    question.choices.create(content: "森林","果物", correct: true)  # 正解５
-    question.choices.create(content: "地中","菌類" correct: false)
-    question.choices.create(content: "川辺","カニ" correct: false) 
-    question.choices.create(content: "砂漠","昆虫" correct: false)
+    question.choices.create(content: "森林 果物", correct: true)  # 正解５
+    question.choices.create(content: "地中 菌類", correct: false)
+    question.choices.create(content: "川辺 カニ", correct: false) 
+    question.choices.create(content: "砂漠 昆虫", correct: false)
   end
 
-  unless quiz_maniac.questions.exists?(content: "アストロジャイアントダイビングスキンクは○○に多くおり、エサは○○を食べることもある")
-    question = quiz_maniac.questions.create(content: "アストロジャイアントダイビングスキンクは○○に多くおり、エサは○○を食べることもある")
-    question.choices.create(content: "森林","果物", correct: true)  # 正解６
-    question.choices.create(content: "地中","菌類" correct: false)
-    question.choices.create(content: "川辺","カニ" correct: false) 
-    question.choices.create(content: "砂漠","昆虫" correct: false)
+  unless quiz_maniac.questions.exists?(content: "繁殖は卵胎生で子供を直接産み、更にメスだけで繁殖する単為生殖はどれ？")
+    question = quiz_maniac.questions.create(content: "繁殖は卵胎生で子供を直接産み、更にメスだけで繁殖する単為生殖はどれ？")
+    question.choices.create(content: "モトイカブトトカゲ", correct: false)  
+    question.choices.create(content: "アカメカブトトカゲ", correct: false)
+    question.choices.create(content: "イボヨルトカゲ", correct: true) # 正解６
+    question.choices.create(content: "シュミットカブトトカゲ", correct: false)
   end
+
+  unless quiz_maniac.questions.exists?(content: "アミメミズベトカゲとアストロジャイアントダイビングスキンクとミミナシオオトカゲの共通は？")
+    question = quiz_maniac.questions.create(content: "アミメミズベトカゲとアストロジャイアントダイビングスキンクとミミナシオオトカゲの共通は？")
+    question.choices.create(content: "乾燥した所にずっといられる", correct: false)  
+    question.choices.create(content: "水の中に、いられる", correct: true)
+    question.choices.create(content: "ヤモリみたいに壁に張り付く", correct: false) # 正解７
+    question.choices.create(content: "火の中にいられる" , correct: false)
+  end
+
+  unless quiz_maniac.questions.exists?(content: "ミミナシオオトカゲは何の先祖といわれてる？")
+    question = quiz_maniac.questions.create(content: "ミミナシオオトカゲは何の先祖といわれてる？")
+    question.choices.create(content: "トカゲ", correct: false)  
+    question.choices.create(content: "ヤモリ", correct: false)
+    question.choices.create(content: "ゴジラ", correct: false) # 正解８
+    question.choices.create(content: "ヘビ", correct: true)
+  end
+
+  unless quiz_maniac.questions.exists?(content: "ミミナシオオトカゲの生息地の島は？")
+    question = quiz_maniac.questions.create(content: "ミミナシオオトカゲの生息地の島は？")
+    question.choices.create(content: "タリアブ島", correct: false)  
+    question.choices.create(content: "ボルネオ島", correct: true)
+    question.choices.create(content: "バンガ島", correct: false) # 正解９
+    question.choices.create(content: "パラワン島", correct: false)
+  end
+
+  unless quiz_maniac.questions.exists?(content: "オオバクチヤモリの由来は？")
+    question = quiz_maniac.questions.create(content: "オオバクチヤモリの由来は？")
+    question.choices.create(content: "大きな生き物に警戒をせずに近づく為", correct: false)  
+    question.choices.create(content: "餌を取る際に、小さい餌を使いより大きい餌を取るから", correct: false)
+    question.choices.create(content: "餌が来るまで動かない", correct: false) # 正解９
+    question.choices.create(content: "外敵に襲われた時に鱗を剥いで逃げる様から", correct:  true)
+  end
+
+
+
+
 
 
 

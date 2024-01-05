@@ -3,6 +3,8 @@ class QuestionsController < ApplicationController
     
     def show
         @question = @quiz.questions.find(params[:id])
+        
+        
 
         
             # クイズのレベルに基づいた処理をここに記述します。

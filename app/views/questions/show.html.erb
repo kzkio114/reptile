@@ -1,14 +1,27 @@
 <!-- app/views/questions/show.html.erb -->
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8 bg-dark text-white p-3 rounded"> <!-- 背景とテキストの色を設定 -->
+      <h1 class="text-primary bg-dark text-white p-2 text-center"><%= @question.content %></h1>
 
-<h1><%= @question.content %></h1>
+      <% if @question.image_url.present? %>
+        <%= image_tag @question.image_url, class: 'img-fluid d-block mx-auto' %>
+      <% else %>
+        <p class="text-secondary text-center custom-text"></p>
+      <% end %>
 
-<%= form_with url: answer_quiz_question_path(@quiz, @question), method: :post do |form| %>
-  <% @question.choices.each do |choice| %>
-    <div>
-      <%= form.radio_button :answer, choice.id %>
-      <%= choice.content %>
+      <%= form_with url: answer_quiz_question_path(@quiz, @question), method: :post, class: 'form-group text-center' do |form| %>
+        <div class="d-flex justify-content-center flex-wrap"> <!-- flex-wrap クラスを追加 -->
+          <% @question.choices.each do |choice| %>
+            <div class="form-check bg-dark p-2 mx-2">
+              <%= form.radio_button :answer, choice.id, class: 'form-check-input custom-radio', id: "answer_#{choice.id}" %>
+              <%= form.label :answer, choice.content, value: choice.id, class: 'form-check-label text-white custom-text', for: "answer_#{choice.id}" %>
+            </div>
+          <% end %>
+        </div>
+
+        <%= form.submit '回答する', class: 'btn btn-primary mt-3 d-block mx-auto' %>
+      <% end %>
     </div>
-  <% end %>
-
-  <%= form.submit '回答する' %>
-<% end %>
+  </div>
+</div>
