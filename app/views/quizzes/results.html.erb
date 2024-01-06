@@ -16,13 +16,13 @@
         <p class="text-warning text-center">おめでとうございます！満点です！画像あげます！使ってね！！</p>
         <% case @quiz.level %>
         <% when 'beginner' %>
-          <%= link_to "Beginner Result", beginner_result_path, class: 'text-warning' %>
+          <%= link_to "リアルなトカゲの写真", beginner_result_path, class: 'text-warning' %>
         <% when 'intermediate' %>
-          <%= link_to "Intermediate Result", intermediate_result_path, class: 'text-warning' %>
+          <%= link_to "リアルなトカゲの写真", intermediate_result_path, class: 'text-warning' %>
         <% when 'advanced' %>
-          <%= link_to "Advanced Result", advanced_result_path, class: 'text-warning' %>
+          <%= link_to "リアルなトカゲの写真", advanced_result_path, class: 'text-warning' %>
         <% when 'maniac' %>
-          <%= link_to "Maniac Result", maniac_result_path, class: 'text-warning' %>
+          <%= link_to "リアルなトカゲの写真", maniac_result_path, class: 'text-warning' %>
         <% end %>
       <% elsif score_percentage >= 80 %>
         <p class="text-warning text-center">素晴らしい！あなたは爬虫類の知識が豊富ですね。</p>
