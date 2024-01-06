@@ -15,3 +15,5 @@
 2024-01-05 13:41:37.781 JST [13251] STATEMENT:  SELECT "questions".* FROM "questions"
 2024-01-05 13:41:49.227 JST [13251] ERROR:  relation "quizzes" does not exist at character 25
 2024-01-05 13:41:49.227 JST [13251] STATEMENT:  SELECT "quizzes".* FROM "quizzes"
+2024-01-05 14:08:50.647 JST [13138] LOG:  received smart shutdown request
+2024-01-05 14:09:33.204 JST [13251] FATAL:  terminating connection due to unexpected postmaster exit

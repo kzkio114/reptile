@@ -3,12 +3,8 @@ class QuestionsController < ApplicationController
     
     def show
         @question = @quiz.questions.find(params[:id])
-        
-        
-
-        
             # クイズのレベルに基づいた処理をここに記述します。
-            case @quiz.level
+          case @quiz.level
             when 'beginner'
               # 初級者向けの特別な処理
             when 'intermediate'
@@ -17,8 +13,7 @@ class QuestionsController < ApplicationController
               # 上級者向けの特別な処理
             when 'maniac'
               # マニアックなクイズ向けの特別な処理
-            end
-    
+        end
     end
   
     def answer

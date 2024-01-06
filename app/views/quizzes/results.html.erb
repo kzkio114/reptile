@@ -4,6 +4,11 @@
     <div class="col-md-8 bg-dark text-white p-3 rounded"> <!-- 背景とテキストの色を設定 -->
       <h2 class="text-center">クイズ結果</h2>
       <p class="text-center">あなたの正解数: <%= @correct_answers_count %> / <%= @quiz.questions.count %></p>
+      <div class="text-center my-4">
+      <% app_name = "辰年なので、爬虫類に興味を持ちましょう！！" %>
+      <% app_url = "https://reptile-recommend-df15caef12da.herokuapp.com/" %>
+       <% tweet_text = "#{app_name}\n私のクイズのスコア（#{I18n.t('quiz_levels.' + @quiz.level)}）は#{@correct_answers_count} / #{@quiz.questions.count}でした！\n#{app_url}" %>
+      <%= link_to "結果をTwitterで共有する", "https://twitter.com/intent/tweet?text=#{CGI.escape(tweet_text)}", target: "_blank", class: "btn btn-primary" %>
 
       <% score_percentage = (@correct_answers_count.to_f / @quiz.questions.count) * 100 %>
 
