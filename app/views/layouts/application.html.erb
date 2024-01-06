@@ -63,6 +63,16 @@
     </div>
   </nav>
 
+<% flash.each do |key, message| %>
+  <div class="alert alert-<%= bootstrap_class_for(key) %> alert-dismissible fade show" role="alert">
+    <%= message %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </button>
+  </div>
+<% end %>
+
+
+
   <%= yield %>
 
   <!-- BootstrapのJavaScriptを追加 -->

@@ -1,9 +1,9 @@
 <div class="container mt-5 mb-3">
   <div class="row">
     <div class="col-2 text-center">
-      <%= image_tag 'image.png', alt: 'キャラクターの説明', class: 'speech-icon' %>
-      <p class="mt-2 text-warning">アストロ君</p>
-    </div>
+   <%= link_to image_tag('image.png', alt: 'キャラクターの説明', class: 'speech-icon'), start_astro_quiz_path %>
+  <p class="mt-2 text-warning">アストロ君</p>
+</div>
     <div class="col-8">
       <div class="speech-bubble">
         <p class="mb-0 text-warning"> 注意！このクイズには、私の個人的な意見が反映されているよ！！頑張って調べたけど、間違いがあるかも知れないから、他の情報源もチェックしてね。クイズで満点を取ったら、結果ページで素敵な画像が待ってるよ！頑張ってね！</p>

@@ -1,5 +1,14 @@
 # app/controllers/quizzes_controller.rb
 class QuizzesController < ApplicationController
+
+  def start_astro_quiz
+    @quiz = Quiz.where(level: 'astro').first # 例として 'astro' レベルを仮定
+    if @quiz && @quiz.questions.any?
+      render 'start_astro_quiz', locals: { quiz: @quiz }
+    else
+      redirect_to root_path, alert: "アストロ君のクイズが利用可能ではありません。"
+    end
+  end
    
     def beginner
         @quiz = Quiz.where(level: 'beginner').first

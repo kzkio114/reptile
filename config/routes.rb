@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get 'quizzes/intermediate_result', to: 'quizzes#intermediate_result', as: 'intermediate_result'
   get 'quizzes/advanced_result', to: 'quizzes#advanced_result', as: 'advanced_result'
   get 'quizzes/maniac_result', to: 'quizzes#maniac_result', as: 'maniac_result'
+  get 'quizzes/start_astro', to: 'quizzes#start_astro_quiz', as: 'start_astro_quiz'
 
 
  
