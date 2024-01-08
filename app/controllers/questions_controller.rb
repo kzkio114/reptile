@@ -25,6 +25,7 @@ class QuestionsController < ApplicationController
   def answer
     @question = @quiz.questions.find(params[:id])
     session[:answers] ||= {}
+    selected_choice = @question.choices.find_by(id: params[:answer])
   
     if @quiz.level == 'astro'
       clicked_x = params[:clicked_x].to_i
@@ -40,14 +41,19 @@ class QuestionsController < ApplicationController
       }
     else
       # 通常のクイズレベルの場合、選択された選択肢と正誤を保存
-      selected_choice = @question.choices.find_by(id: params[:answer])
+      
+      if selected_choice.nil?
+        # 選択肢が選択されていない場合の処理
+        flash[:alert] = "選択肢を選んでください。"
+        redirect_to quiz_question_path(@quiz, @question) and return
+      end
+      
       is_correct = selected_choice&.correct?
       session[:answers][@question.id.to_s] = { 
         choice_id: selected_choice&.id, 
         is_correct: is_correct 
       }
     end
-  
     redirect_to next_question_or_result_path
   end
 
