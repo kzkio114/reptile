@@ -1,0 +1,22 @@
+<!-- app/views/quizzes/results.html.erb -->
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8 bg-dark text-white p-3 rounded">
+      <h2 class="text-center">クイズ結果</h2>
+      <div class="text-center my-4">
+        <% app_name = "辰年なので、爬虫類に興味を持ちましょう！！" %>
+        <% app_url = "https://reptile-recommend-df15caef12da.herokuapp.com/" %>
+        <% tweet_text = "#{app_name}\nあなたも、アストロ君を探してみませんか？？？\n#{app_url}" %>
+        <%= link_to "結果をTwitterで共有する", "https://twitter.com/intent/tweet?text=#{CGI.escape(tweet_text)}", target: "_blank", class: "btn btn-primary mb-4" %> <!-- mb-4 を追加 -->
+        <% if @quiz.level == 'astro' %>
+          <%= render 'astro_level_results', quiz: @quiz, answers: @answers %>
+        <% else %>
+          <!-- 通常のクイズ結果表示 -->
+          <%= render 'regular_quiz_results', quiz: @quiz, answers: @answers %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+  

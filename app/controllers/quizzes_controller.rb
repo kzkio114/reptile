@@ -1,11 +1,19 @@
 # app/controllers/quizzes_controller.rb
 class QuizzesController < ApplicationController
+   
+  def astro_results
+    @quiz = Quiz.find(params[:id])
+    # 'quizzes/astro_results.html.erb' ビューが表示されます。
+  end
 
   def start_astro_quiz
-    @quiz = Quiz.where(level: 'astro').first # 例として 'astro' レベルを仮定
+    # アストロレベルのクイズを開始するアクション。
+    @quiz = Quiz.where(level: 'astro').first # 'astro' レベルのクイズを探す。
     if @quiz && @quiz.questions.any?
+      # クイズが存在し、質問がある場合、開始ページを表示。
       render 'start_astro_quiz', locals: { quiz: @quiz }
     else
+      # クイズがない場合、ルートページにリダイレクト。
       redirect_to root_path, alert: "アストロ君のクイズが利用可能ではありません。"
     end
   end
@@ -49,21 +57,23 @@ class QuizzesController < ApplicationController
       def results
         @quiz = Quiz.find(params[:id])
         @answers = session[:answers] || {}
-        
-        # ここにデバッグ出力を追加
-        Rails.logger.debug "セッションに保存された回答: #{session[:answers].inspect}"
-        
+    
+        # 正解数をカウント
         @correct_answers_count = 0
         @quiz.questions.each do |question|
-          # ユーザーの選んだ回答のIDを取得
-          user_answer_id = @answers[question.id.to_s]
-        
-          # 正解の選択肢のIDを取得
-          correct_choice = question.choices.find_by(correct: true)
-        
-          # ユーザーの回答が正解と一致する場合、カウントを増やす
-          if correct_choice && user_answer_id == correct_choice.id
-            @correct_answers_count += 1
+          if @quiz.level == 'astro'
+            # アストロレベルの場合の処理
+            answer = @answers[question.id.to_s]
+            if answer && answer[:is_correct]
+              @correct_answers_count += 1
+            end
+          else
+            # 通常のクイズレベルの場合の処理
+            user_answer_id = @answers[question.id.to_s]
+            correct_choice = question.choices.find_by(correct: true)
+            if correct_choice && user_answer_id == correct_choice.id.to_s
+              @correct_answers_count += 1
+            end
           end
         end
       end

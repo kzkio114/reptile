@@ -1,0 +1,13 @@
+ <% @quiz.questions.each do |question| %>
+  <div class="row mb-3 bg-dark text-white "> <!-- 背景を暗色にして文字を白色にする -->
+    <div class="col-md-4">
+      <strong class="text-white font-weight-bold">問題:</strong> <%= question.content %>
+    </div>
+    <div class="col-md-4">
+      <strong class="text-white font-weight-bold">あなたの回答:</strong> <%= @answers[question.id.to_s] ? Choice.find_by(id: @answers[question.id.to_s])&.content : "回答がありません" %>
+    </div>
+    <div class="col-md-4">
+      <strong class="text-white font-weight-bold">正解:</strong> <%= question.choices.find_by(correct: true)&.content %>
+    </div>
+  </div>
+<% end %>

@@ -5,6 +5,7 @@ quiz_beginner = Quiz.find_or_create_by(title: "初心者向けクイズのタイ
 quiz_intermediate = Quiz.find_or_create_by(title: "中級者向けクイズのタイトル", description: "中級者向けクイズの説明", level: "intermediate")
 quiz_advanced = Quiz.find_or_create_by(title: "上級者向けクイズのタイトル", description: "上級者向けクイズの説明", level: "advanced")
 quiz_maniac = Quiz.find_or_create_by(title: "マニアックなクイズのタイトル", description: "マニアックなクイズの説明", level: "maniac")
+quiz_astro = Quiz.find_or_create_by(title: "アストロレベルクイズのタイトル", description: "アストロレベルクイズの説明", level: "astro")
 
 
 # 初心者向けクイズに質問を追加（既に存在しない場合のみ）
@@ -190,8 +191,33 @@ unless quiz_advanced.questions.exists?(content: "ヒョウモントカゲモド�
     question.choices.create(content: "外敵に襲われた時に鱗を剥いで逃げる様から", correct:  true)
   end
 
+  image_urls = ["asutoro01.jpg", "asutoro02.jpg", "asutoro03.jpg", "asutoro04.jpg", "asutoro05.jpg", "asutoro06.jpg" , "asutoro07.jpg",]
 
+  correct_coordinates = [
+  { x1: 320, x2: 500, y1: 100, y2: 210 }, # 1問目の座標 1
+  { x1: 280, x2: 390, y1: 150, y2: 305 }, # 2問目の座標 2
+  { x1: 210, x2: 350, y1: 190, y2: 270 }, # 3問目の座標 3
+  { x1: 400, x2: 500, y1: 220, y2: 290 }, # 4問目の座標 4
+  { x1: 300, x2: 400, y1: 170, y2: 270 }, # 5問目の座標 5
+  { x1: 270, x2: 340, y1: 160, y2: 220 }, # 6問目の座標 6
+  { x1: 130, x2: 200, y1: 160, y2: 250 }, # 7問目の座標 7
+]
 
+  image_urls.each_with_index do |image_url, index|
+    content = "どこに隠れてますか？？  #{index + 1}問目"
+    coordinates = correct_coordinates[index] # indexに基づいた座標を取得
+  
+    unless quiz_astro.questions.exists?(content: content, image_url: image_url)
+      question = quiz_astro.questions.create(
+        content: content,
+        image_url: image_url,
+        correct_x1: coordinates[:x1], # ここに該当する問題の最小X座標
+        correct_x2: coordinates[:x2], # ここに該当する問題の最大X座標
+        correct_y1: coordinates[:y1], # ここに該当する問題の最小Y座標
+        correct_y2: coordinates[:y2]  # ここに該当する問題の最大Y座標
+      )
+    end
+  end
 
 
 
