@@ -23,6 +23,10 @@ Rails.application.routes.draw do
   get 'quizzes/maniac_result', to: 'quizzes#maniac_result', as: 'maniac_result'
   get 'quizzes/start_astro', to: 'quizzes#start_astro_quiz', as: 'start_astro_quiz'
 
+    # クイズの回答を処理するルート
+  post 'quizzes/astro_answers', to: 'quizzes#astro_answers', as: 'astro_quiz_answers'
+    # クイズの結果を表示するルート
+  get 'quizzes/:id/astro_results', to: 'quizzes#astro_results', as: 'astro_results_quiz'
 
  
 

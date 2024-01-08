@@ -1,0 +1,17 @@
+<% if @quiz.level == 'astro' %>
+  <h3 class="text-center text-white mb-3">アストロ君を探してね！！！</h3>
+  <p class="text-warning text-center">みんな見つけられたかな？？  プレイしてくれて、ありがとう！！</p>
+  <%= image_tag "image.png", alt: "残念賞！", class: 'img-fluid mx-auto d-block mb-4' %>
+  <% @quiz.questions.each do |question| %>
+    <div class="row mb-5 bg-dark text-white">
+      <div class="col-md-6">
+        <strong class="text-white font-weight-bold">問題:</strong> <%= question.content %>
+      </div>
+      <div class="col-md-6 text-right">
+        <strong class="text-white font-weight-bold">正解座標:</strong>
+        X1: <%= question.correct_x1 %>, Y1: <%= question.correct_y1 %>,
+        X2: <%= question.correct_x2 %>, Y2: <%= question.correct_y2 %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
