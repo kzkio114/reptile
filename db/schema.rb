@@ -39,11 +39,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_08_235911) do
     t.datetime "updated_at", null: false
     t.string "image_url"
     t.json "answers", default: {}
+    t.string "answer"
     t.integer "correct_x1"
     t.integer "correct_x2"
     t.integer "correct_y1"
     t.integer "correct_y2"
-    t.string "answer"
     t.index ["quiz_id"], name: "index_questions_on_quiz_id"
   end
 
