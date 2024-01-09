@@ -13,6 +13,7 @@ class QuestionsController < ApplicationController
             # 上級者向けの特別な処理
           when 'maniac'
             # マニアックなクイズ向けの特別な処理
+          when 'astro'
       end
   end
 
