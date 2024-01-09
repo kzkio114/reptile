@@ -5,6 +5,7 @@ quiz_beginner = Quiz.find_or_create_by(title: "初心者向けクイズのタイ
 quiz_intermediate = Quiz.find_or_create_by(title: "中級者向けクイズのタイトル", description: "中級者向けクイズの説明", level: "intermediate")
 quiz_advanced = Quiz.find_or_create_by(title: "上級者向けクイズのタイトル", description: "上級者向けクイズの説明", level: "advanced")
 quiz_maniac = Quiz.find_or_create_by(title: "マニアックなクイズのタイトル", description: "マニアックなクイズの説明", level: "maniac")
+quiz_astro = Quiz.find_or_create_by(title: "アストロレベルクイズのタイトル", description: "アストロレベルクイズの説明", level: "astro")
 
 
 # 初心者向けクイズに質問を追加（既に存在しない場合のみ）
