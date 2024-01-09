@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_04_224602) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_08_235911) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -38,6 +38,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_04_224602) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image_url"
+    t.json "answers", default: {}
+    t.integer "correct_x1"
+    t.integer "correct_x2"
+    t.integer "correct_y1"
+    t.integer "correct_y2"
+    t.string "answer"
     t.index ["quiz_id"], name: "index_questions_on_quiz_id"
   end
 
