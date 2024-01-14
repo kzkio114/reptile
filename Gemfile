@@ -15,6 +15,7 @@ gem 'dartsass-rails', '~> 0.5.0'
 gem 'jquery-rails'
 gem 'popper_js', '~> 2.11.8'
 gem 'sassc-rails'
+gem 'google-api-client'
 
 group :development, :test do
   gem 'sqlite3', '~> 1.4'
@@ -33,3 +34,5 @@ end
 group :production do
   gem 'pg'
 end
+
+gem 'dotenv-rails', groups: [:development, :test]

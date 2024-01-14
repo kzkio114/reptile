@@ -26,12 +26,12 @@
         <% end %>
       <% elsif score_percentage >= 80 %>
         <p class="text-warning text-center">素晴らしい！あなたは爬虫類の知識が豊富ですね。</p>
-      <% elsif score_percentage >= 50 %>
+      <% elsif score_percentage < 50 %>
         <p class="text-warning text-center">良い試みです！もう少しで専門家になれますよ。</p>
-      <% else %>
-        <p class="text-warning text-center">落ち込まないで！！大丈夫！！残念賞あげます！！使ってね！！</p>
-        <%= image_tag "image.png", alt: "残念賞！", class: 'img-fluid mx-auto d-block' %>
-      <% end %>
+      <% if @random_image_url.present? %>
+     <%= image_tag @random_image_url, alt: "ランダム画像", class: 'img-fluid d-block mx-auto' %>
+     <% end %>
+    <% end %>
 
    <% @quiz.questions.each do |question| %>
   <div class="row mb-3 bg-dark text-white "> <!-- 背景を暗色にして文字を白色にする -->

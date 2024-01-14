@@ -40,3 +40,9 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+# Google API認証情報
+/config/client_secret_522050689870-gc30m6qt8o2eutksstm09gla2ll7ftfa.apps.googleusercontent.com.json
+# Google OAuth トークン
+config/tokens.yaml
+# 環境変数を含むファイル
+.env
