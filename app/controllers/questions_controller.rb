@@ -16,7 +16,7 @@ class QuestionsController < ApplicationController
     
     # ここに認証情報を設定
 
-    client_id = Google::Auth::ClientId.from_file(Rails.root.join('config', 'client_secret_522050689870-gc30m6qt8o2eutksstm09gla2ll7ftfa.apps.googleusercontent.com.json'))
+    client_id = Google::Auth::ClientId.from_hash(JSON.parse(ENV['GOOGLE_CLIENT_SECRET']))
     token_store = Google::Auth::Stores::FileTokenStore.new(file: Rails.root.join('config', 'tokens.yaml'))
     authorizer = Google::Auth::UserAuthorizer.new(client_id, Google::Apis::DriveV3::AUTH_DRIVE_READONLY, token_store)
     user_id = 'kzkio114@gmail.com'
