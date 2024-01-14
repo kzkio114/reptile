@@ -28,9 +28,10 @@
         <p class="text-warning text-center">素晴らしい！あなたは爬虫類の知識が豊富ですね。</p>
       <% elsif score_percentage < 50 %>
         <p class="text-warning text-center">良い試みです！もう少しで専門家になれますよ。</p>
-      <% if @random_image_url.present? %>
+         <%= image_tag "image.png", alt: "ランダム画像", class: 'img-fluid d-block mx-auto' %>
+      <!-- <% if @random_image_url.present? %>
      <%= image_tag @random_image_url, alt: "ランダム画像", class: 'img-fluid d-block mx-auto' %>
-     <% end %>
+     <% end %> -->
     <% end %>
 
    <% @quiz.questions.each do |question| %>
