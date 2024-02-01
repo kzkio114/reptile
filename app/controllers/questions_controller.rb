@@ -78,7 +78,7 @@ class QuestionsController < ApplicationController
       end
      else
       # ユーザーの回答が25文字を超える場合、エラーメッセージを表示
-      flash[:alert] = "回答は25文字以下で入力してね〜！。"
+      flash[:alert] = "回答は、25文字以下で入力してね〜！"
       redirect_to quiz_question_path(@quiz, @question) and return
      end
    end
