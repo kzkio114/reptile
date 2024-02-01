@@ -58,42 +58,50 @@
             });
           });
         </script>
-       <% elsif @question.image_url.present? %>
-        <!-- 通常レベルの画像表示 -->
-        <%= image_tag @question.image_url, class: 'img-fluid d-block mx-auto' %>
-      <% else %>
-        <p class="text-secondary text-center custom-text"></p>
-      <% end %>
+      <% elsif @question.image_url.present? && @quiz.level == 'intermediate' %>
+          <!-- 中級レベルの画像表示 -->
+          <%= image_tag @question.image_url, class: 'img-fluid d-block mx-auto' %>
+          <!-- 中級レベルの質問に対するテキストフィールド回答フォーム -->
+          <%= form_with url: answer_quiz_question_path(@quiz, @question), method: :post, class: 'form-group text-center' do |form| %>
+            <%= form.hidden_field :question_id, value: @question.id %>
+            <%= form.text_field :answer, placeholder: "答えを入力" %>
+            <%= form.submit "回答する" %>
+          <% end %>
+        <% elsif @question.image_url.present? %>
+          <!-- 通常レベルの画像表示 -->
+          <%= image_tag @question.image_url, class: 'img-fluid d-block mx-auto' %>
+        <% else %>
+          <p class="text-secondary text-center custom-text"></p>
+        <% end %>
 
-         <%# "次へ"ボタンはアストロレベルのときのみ表示 %>
-       <% if @quiz.level == 'astro' %>
-       <% if @next_question %>
-       <%= link_to '見つけられなかった人はここを押してね！', quiz_question_path(@quiz, @next_question), class: 'btn btn-primary mt-3 d-block mx-auto' %>
-       <% else %>
-       <%# 最後の質問の場合、結果ページへのリンクを表示 %>
-       <%= link_to '最終問題だよ！見つけられなかった人はここを押してね！', astro_results_quiz_path(@quiz), class: 'btn btn-primary mt-3 d-block mx-auto' %>
-       <% end %>
+        <%# "次へ"ボタンはアストロレベルのときのみ表示 %>
+        <% if @quiz.level == 'astro' %>
+          <% if @next_question %>
+            <%= link_to '見つけられなかった人はここを押してね！', quiz_question_path(@quiz, @next_question), class: 'btn btn-primary mt-3 d-block mx-auto' %>
+          <% else %>
+            <%= link_to '最終問題だよ！見つけられなかった人はここを押してね！', astro_results_quiz_path(@quiz), class: 'btn btn-primary mt-3 d-block mx-auto' %>
+          <% end %>
         <% end %>
 
         <% if @quiz.level == 'astro' %>
-        <%= form_with url: answer_quiz_question_path(@quiz, @question), method: :post, id: 'hidden-form' do |form| %>
-          <%= form.hidden_field :clicked_x, id: 'clicked_x' %>
-          <%= form.hidden_field :clicked_y, id: 'clicked_y' %>
+          <%= form_with url: answer_quiz_question_path(@quiz, @question), method: :post, id: 'hidden-form' do |form| %>
+            <%= form.hidden_field :clicked_x, id: 'clicked_x' %>
+            <%= form.hidden_field :clicked_y, id: 'clicked_y' %>
+          <% end %>
+        <% elsif @quiz.level != 'intermediate' %>
+          <%# アストロレベルの質問でなければ、選択肢と送信ボタンを表示 %>
+          <%= form_with url: answer_quiz_question_path(@quiz, @question), method: :post, class: 'form-group text-center' do |form| %>
+            <div class="d-flex justify-content-center flex-wrap">
+              <% @question.choices.each do |choice| %>
+                <div class="form-check bg-dark p-2 mx-2">
+                  <%= form.radio_button :answer, choice.id, class: 'form-check-input custom-radio', id: "answer_#{choice.id}" %>
+                  <%= form.label :answer, choice.content, value: choice.id, class: 'form-check-label text-white custom-text', for: "answer_#{choice.id}" %>
+                </div>
+              <% end %>
+            </div>
+            <%= form.submit '回答する', class: 'btn btn-primary mt-3 d-block mx-auto' %>
+          <% end %>
         <% end %>
-    <% else %>
-        <%# アストロレベルの質問でなければ、選択肢と送信ボタンを表示 %>
-        <%= form_with url: answer_quiz_question_path(@quiz, @question), method: :post, class: 'form-group text-center' do |form| %>
-          <div class="d-flex justify-content-center flex-wrap">
-            <% @question.choices.each do |choice| %>
-              <div class="form-check bg-dark p-2 mx-2">
-                <%= form.radio_button :answer, choice.id, class: 'form-check-input custom-radio', id: "answer_#{choice.id}" %>
-                <%= form.label :answer, choice.content, value: choice.id, class: 'form-check-label text-white custom-text', for: "answer_#{choice.id}" %>
-              </div>
-            <% end %>
-          </div>
-          <%= form.submit '回答する', class: 'btn btn-primary mt-3 d-block mx-auto' %>
-        <% end %>
-      <% end %>
     </div>
   </div>
 </div>

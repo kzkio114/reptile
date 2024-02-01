@@ -13,37 +13,47 @@
       <% score_percentage = (@correct_answers_count.to_f / @quiz.questions.count) * 100 %>
 
       <% if @correct_answers_count == @quiz.questions.count %>
-        <p class="text-warning text-center">おめでとうございます！満点です！画像あげます！使ってね！！</p>
+        <p class="text-warning text-center">おめでとうございます！満点です！トカゲの写真見る？！！</p>
         <% case @quiz.level %>
         <% when 'beginner' %>
-          <%= link_to "リアルなトカゲの写真", beginner_result_path, class: 'text-warning' %>
+          <%= link_to "トカゲの写真", beginner_result_path, class: 'text-warning' %>
         <% when 'intermediate' %>
-          <%= link_to "リアルなトカゲの写真", intermediate_result_path, class: 'text-warning' %>
+          <%= link_to "トカゲの写真", intermediate_result_path, class: 'text-warning' %>
         <% when 'advanced' %>
-          <%= link_to "リアルなトカゲの写真", advanced_result_path, class: 'text-warning' %>
+          <%= link_to "トカゲの写真", advanced_result_path, class: 'text-warning' %>
         <% when 'maniac' %>
-          <%= link_to "リアルなトカゲの写真", maniac_result_path, class: 'text-warning' %>
+          <%= link_to "トカゲの写真", maniac_result_path, class: 'text-warning' %>
         <% end %>
       <% elsif score_percentage >= 80 %>
         <p class="text-warning text-center">素晴らしい！あなたは爬虫類の知識が豊富ですね。</p>
-      <% elsif score_percentage < 50 %>
-        <p class="text-warning text-center">良い試みです！もう少しで専門家になれますよ。</p>
-         <%= image_tag "image.png", alt: "ランダム画像", class: 'img-fluid d-block mx-auto' %>
-      <!-- <% if @random_image_url.present? %>
-     <%= image_tag @random_image_url, alt: "ランダム画像", class: 'img-fluid d-block mx-auto' %>
-     <% end %> -->
-    <% end %>
-
+      <% else score_percentage < 50 %>
+     <p class="text-warning text-center">良い試みです！もう少しで専門家になれますよ。</p>
+      <%= link_to "残念賞は#{@random_image_name}(かわいいアイコン)だよ", @random_image_url, target: "_blank" %>
+      <% end %>
+      
    <% @quiz.questions.each do |question| %>
   <div class="row mb-3 bg-dark text-white "> <!-- 背景を暗色にして文字を白色にする -->
     <div class="col-md-4">
       <strong class="text-white font-weight-bold">問題:</strong> <%= question.content %>
     </div>
     <div class="col-md-4">
-      <strong class="text-white font-weight-bold">あなたの回答:</strong> <%= @answers[question.id.to_s] ? Choice.find_by(id: @answers[question.id.to_s])&.content : "回答がありません" %>
+      <% if @quiz.level == 'intermediate' %>
+        <!-- 中級レベルの場合、セッションからユーザーのテキスト回答を表示 -->
+        <strong class="text-white font-weight-bold">あなたの回答:</strong> <%= @answers[question.id.to_s] ? @answers[question.id.to_s][:answer] : "回答がありません" %>
+      <% else %>
+        <!-- それ以外のレベルの場合、選択した選択肢から回答を表示 -->
+        <strong class="text-white font-weight-bold">あなたの回答:</strong> <%= @answers[question.id.to_s] ? Choice.find_by(id: @answers[question.id.to_s])&.content : "回答がありません" %>
+      <% end %>
     </div>
     <div class="col-md-4">
-      <strong class="text-white font-weight-bold">正解:</strong> <%= question.choices.find_by(correct: true)&.content %>
+      <% if @quiz.level == 'intermediate' %>
+        <!-- 中級レベルの場合、質問の`answer`属性から正解を表示 -->
+        <strong class="text-white font-weight-bold">正解:</strong> <%= question.answer %>
+      <% else %>
+        <!-- それ以外のレベルの場合、正しい選択肢から正解を表示 -->
+        <strong class="text-white font-weight-bold">正解:</strong> <%= question.choices.find_by(correct: true)&.content %>
+      <% end %>
     </div>
   </div>
 <% end %>
+ <%= link_to "最初のページに戻ります！", root_path, class: "btn btn-primary" %>

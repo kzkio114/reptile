@@ -1,15 +1,10 @@
 class PagesController < ApplicationController
-    
-    def index
-      
-    end
+ include GoogleApiConcern
 
-    def correct
-      # 正解ページのビューを表示
-    end
-  
-    def incorrect
-      # 不正解ページのビューを表示
+ before_action :initialize_google_api, only: [:index]
+
+    def index
+
     end
 
 end

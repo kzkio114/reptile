@@ -2,7 +2,7 @@
 
 # 初心者向けクイズを取得または新しいクイズを作成し、レベルを設定
 quiz_beginner = Quiz.find_or_create_by(title: "初心者向けクイズのタイトル", description: "初心者向けクイズの説明", level: "beginner")
-quiz_intermediate = Quiz.find_or_create_by(title: "中級者向けクイズのタイトル", description: "中級者向けクイズの説明", level: "intermediate")
+quiz_intermediate = Quiz.find_or_create_by(title: "中級者向けクイズのタイトル", description: "画像当てクイズの説明", level: "intermediate")
 quiz_advanced = Quiz.find_or_create_by(title: "上級者向けクイズのタイトル", description: "上級者向けクイズの説明", level: "advanced")
 quiz_maniac = Quiz.find_or_create_by(title: "マニアックなクイズのタイトル", description: "マニアックなクイズの説明", level: "maniac")
 quiz_astro = Quiz.find_or_create_by(title: "アストロレベルクイズのタイトル", description: "アストロレベルクイズの説明", level: "astro")
@@ -97,7 +97,7 @@ unless quiz_advanced.questions.exists?(content: "ヒョウモントカゲモド�
   end
 
   unless quiz_advanced.questions.exists?(content: "ヒョウモントカゲモドキのモルフでホワイト系は？")
-    question = quiz_advanced.questions.create(content: "ヒョウモントカゲモドキのモルフでホワイト系は")
+    question = quiz_advanced.questions.create(content: "ヒョウモントカゲモドキのモルフでホワイト系は？")
     question.choices.create(content: "ブラックナイト", correct: false)
     question.choices.create(content: "ディアブロブランコ", correct: true)
     question.choices.create(content: "レッドデビル", correct: false) 
@@ -222,9 +222,29 @@ image_urls.each_with_index do |image_url, index|
 end
 
 
+# 画像を使った質問を追加
+image_questions = [
+  { content: "この爬虫類は何でしょう?", image_url: "アカア○リクガメ.jpg", answer: "アカアシリクガメ" },
+  { content: "この爬虫類は何でしょう?", image_url: "オニプレ○トトカゲ.jpg", answer: "オニプレートトカゲ" },
+  { content: "この爬虫類は何でしょう?", image_url: "シミリスモ○ター.jpg", answer: "シミリスモニター" },
+  { content: "この爬虫類は何でしょう?", image_url: "ソトイ○トカゲ.jpg", answer: "ソトイワトカゲ" },
+  { content: "この爬虫類は何でしょう?", image_url: "ニ○ントカゲ.jpg", answer: "ニホントカゲ" },
+  { content: "この爬虫類は何でしょう?", image_url: "バクチヤモ○.jpg", answer: "バクチヤモリ" },
+  { content: "この爬虫類は何でしょう?", image_url: "ヒナタヨロ○トカゲ.jpg", answer: "ヒナタヨロイトカゲ" },
+  { content: "この爬虫類は何でしょう?", image_url: "フェルナンデスス○ンク.jpg", answer: "フェルナンデススキンク" },
+  { content: "この爬虫類は何でしょう?", image_url: "ミューラスキ○ク.jpg", answer: "ミューラスキンク" },
+  { content: "この爬虫類は何でしょう?", image_url: "レオパードゲッコー.jpg", answer: "レオパードゲッコー,ヒョウモントカゲモドキ"}
+  # 他の質問を追加できます
+]
 
 
-
+# 画像を使った質問を追加
+image_questions.each do |iq|
+  unless quiz_intermediate.questions.exists?(content: iq[:content], image_url: iq[:image_url])
+    # `answer` 属性を使って質問を作成
+    quiz_intermediate.questions.create(content: iq[:content], image_url: iq[:image_url], answer: iq[:answer])
+  end
+end
 
 
   

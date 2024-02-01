@@ -28,7 +28,9 @@ Rails.application.routes.draw do
     # クイズの結果を表示するルート
   get 'quizzes/:id/astro_results', to: 'quizzes#astro_results', as: 'astro_results_quiz'
 
- 
+  post 'quizzes/intermediate/answer', to: 'quizzes#answer_intermediate', as: 'answer_intermediate_quiz'
+
+  
 
 
   # クイズに関連するルート

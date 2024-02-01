@@ -38,7 +38,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_09_020927) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image_url"
-    t.json "answers", default: {}
     t.string "answer"
     t.integer "correct_x1"
     t.integer "correct_x2"
