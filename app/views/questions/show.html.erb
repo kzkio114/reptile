@@ -60,7 +60,7 @@
         </script>
       <% elsif @question.image_url.present? && @quiz.level == 'intermediate' %>
           <!-- 中級レベルの画像表示 -->
-          <%= image_tag @question.image_url, class: 'img-fluid d-block mx-auto' %>
+          <%= image_tag @question.image_url, class: 'img-fluid d-block mx-auto', style: 'width: 90%; height: auto;' %>
           <!-- 中級レベルの質問に対するテキストフィールド回答フォーム -->
           <%= form_with url: answer_quiz_question_path(@quiz, @question), method: :post, class: 'form-group text-center' do |form| %>
             <%= form.hidden_field :question_id, value: @question.id %>

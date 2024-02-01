@@ -2,6 +2,7 @@ class Question < ApplicationRecord
   belongs_to :quiz
   has_many :choices, dependent: :destroy
   
+  
   def correct_answers
     self.answers.split(',')
   end

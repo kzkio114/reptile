@@ -54,12 +54,20 @@ class QuestionsController < ApplicationController
         is_correct = correct_answers.include?(user_answer) # ユーザーの回答が正しい回答の配列に含まれているかどうかをチェック
         session[:answers][@question.id.to_s] = { answer: user_answer, is_correct: is_correct }
         
-        Rails.logger.debug "セッションに保存された回答: #{session[:answers].inspect}"#
-
-        flash[:notice] = is_correct ? "正解です！" : "不正解ですが、次に進みましょう！"
+        if is_correct
+          session[:answers][@question.id.to_s] = { answer: user_answer, is_correct: true }
+          flash[:notice] = "正解？？！！え？？正解出すの？？？すごすぎる・・・？？？"
+        else
+          session[:answers][@question.id.to_s] = { answer: user_answer, is_correct: false }
+          flash[:alert] = "不正解だけど、落ち込まないでわからないのが当たり前だよ！！！"
+        end
       else
-        flash[:alert] = "この質問の正解が設定されていません。"
+        flash[:alert] = "この質問の正解が設定されていません。ごめんなさい・・・！！"
       end
+
+      # バリデーションチェックを追加
+      if user_answer.blank? || user_answer.length <= 25
+      # ユーザーの回答が存在し、25文字以下の場合、処理を続行
       # 次の質問にリダイレクト、またはクイズの終了
        next_question = @quiz.questions.where('id > ?', @question.id).first
       if next_question
@@ -68,26 +76,36 @@ class QuestionsController < ApplicationController
       # 最後の質問を回答した場合、結果ページにリダイレクト
       redirect_to results_quiz_path(@quiz) and return
       end
-    end
+     else
+      # ユーザーの回答が25文字を超える場合、エラーメッセージを表示
+      flash[:alert] = "回答は25文字以下で入力してね〜！。"
+      redirect_to quiz_question_path(@quiz, @question) and return
+     end
+   end
   
-    if selected_choice.nil?
-      # 無回答の場合
-      flash[:alert] = "回答を選択してください。"
-      redirect_to quiz_question_path(@quiz, @question)
+   if selected_choice.nil?
+    # 無回答の場合
+    flash[:alert] = "回答を選んでくれないと進めないです！！"
+    redirect_to quiz_question_path(@quiz, @question)
+  else
+    # 選択肢が存在する場合、正解と比較して判定
+    if selected_choice.correct?
+      session[:answers][@question.id.to_s] = { choice_id: selected_choice.id, is_correct: true }
+      flash[:notice] = "正解！！おめでとうございます！！"
     else
-      # 次の質問にリダイレクト、またはクイズの終了
-      next_question = @quiz.questions.where('id > ?', @question.id).first
-      if next_question
-        Rails.logger.debug "セッションに保存された回答: #{session[:answers].inspect}"#
-        redirect_to quiz_question_path(@quiz, next_question) and return
-      else
-        # 最後の質問を回答した場合、結果ページにリダイレクト
-        Rails.logger.debug "セッションに保存された回答: #{session[:answers].inspect}"#
+      session[:answers][@question.id.to_s] = { choice_id: selected_choice.id, is_correct: false }
+      flash[:alert] = "不正解だけど、落ち込まないで！解けないのが普通だよ！！！！"
+    end
 
-        redirect_to results_quiz_path(@quiz)
-      end
+    # 次の質問にリダイレクト、またはクイズの終了
+    next_question = @quiz.questions.where('id > ?', @question.id).first
+    if next_question
+      redirect_to quiz_question_path(@quiz, next_question)
+    else
+      redirect_to results_quiz_path(@quiz)
     end
   end
+end
 
   private
 

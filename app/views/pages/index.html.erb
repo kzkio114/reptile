@@ -33,7 +33,7 @@
    <div class="col-8 offset-2 mt-5 text-center">
    <div class="position-relative d-inline-block">
    <div class="d-inline-block text-white bg-dark">
-    残念賞画像ガチャです。(50種類以上)
+    残念賞イラストガチャです。(50種類以上)
     <%= link_to @random_image_url, target: "_blank", class: 'btn btn-dark btn-sm d-block my-2' do %>
       <%= image_tag('ガチャ.png', alt: 'ガチャ', class: 'img-fluid', style: 'max-width: 300px;') %>
       <%= link_to "Twitterでシェア", "https://twitter.com/intent/tweet?text=#{CGI.escape("残念賞画像ガチャはこの結果になりました！ 🥳\n#{@random_image_name}です！🥳おめでとうございます！🥳 ")}&url=#{CGI.escape(@random_image_url)}", target: "_blank", class: "btn btn-twitter" %>

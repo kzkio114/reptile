@@ -13,7 +13,7 @@
       <% score_percentage = (@correct_answers_count.to_f / @quiz.questions.count) * 100 %>
 
       <% if @correct_answers_count == @quiz.questions.count %>
-        <p class="text-warning text-center">おめでとうございます！満点です！トカゲの写真見る？！！</p>
+        <p class="text-warning text-center">おめでとうございます！満点です！自慢しましょう！！トカゲの写真見ます？？！！</p>
         <% case @quiz.level %>
         <% when 'beginner' %>
           <%= link_to "トカゲの写真", beginner_result_path, class: 'text-warning' %>
@@ -25,10 +25,10 @@
           <%= link_to "トカゲの写真", maniac_result_path, class: 'text-warning' %>
         <% end %>
       <% elsif score_percentage >= 80 %>
-        <p class="text-warning text-center">素晴らしい！あなたは爬虫類の知識が豊富ですね。</p>
+        <p class="text-warning text-center">あなたは爬虫類の知識が豊富ですね！とりあえず、自慢しましょう！！</p>
       <% else score_percentage < 50 %>
-     <p class="text-warning text-center">良い試みです！もう少しで専門家になれますよ。</p>
-      <%= link_to "残念賞は#{@random_image_name}(かわいいアイコン)だよ", @random_image_url, target: "_blank" %>
+     <p class="text-warning text-center">ナイスファイト！！もう少しで専門家になれるよ！！残念賞も見てね！</p>
+      <%= link_to "残念賞！#{@random_image_name}(イラストだよ）", @random_image_url, target: "_blank" %>
       <% end %>
       
    <% @quiz.questions.each do |question| %>
@@ -39,10 +39,10 @@
     <div class="col-md-4">
       <% if @quiz.level == 'intermediate' %>
         <!-- 中級レベルの場合、セッションからユーザーのテキスト回答を表示 -->
-        <strong class="text-white font-weight-bold">あなたの回答:</strong> <%= @answers[question.id.to_s] ? @answers[question.id.to_s][:answer] : "回答がありません" %>
+       <strong class="text-white font-weight-bold">あなたの回答:</strong> <%= @answers[question.id.to_s] ? @answers[question.id.to_s]['answer'] : "回答がありません" %>
       <% else %>
         <!-- それ以外のレベルの場合、選択した選択肢から回答を表示 -->
-        <strong class="text-white font-weight-bold">あなたの回答:</strong> <%= @answers[question.id.to_s] ? Choice.find_by(id: @answers[question.id.to_s])&.content : "回答がありません" %>
+        <strong class="text-white font-weight-bold">あなたの回答:</strong> <%= @answers[question.id.to_s]&.dig('choice_id') ? Choice.find_by(id: @answers[question.id.to_s]['choice_id'])&.content : "回答がありません" %>
       <% end %>
     </div>
     <div class="col-md-4">
