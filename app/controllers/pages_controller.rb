@@ -1,11 +1,10 @@
 class PagesController < ApplicationController
- include GoogleApiConcern
+include GoogleApiConcern
 
- before_action :initialize_google_api, only: [:index]
+before_action :initialize_google_api, only: [:index]
 
-    def index
-
-    end
+def index
+end
 
 end
-  
+

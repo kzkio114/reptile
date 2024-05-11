@@ -7,7 +7,7 @@
       <div class="text-center my-4">
       <% app_name = "辰年なので、爬虫類に興味を持ちましょう！！" %>
       <% app_url = "https://reptile-recommend-df15caef12da.herokuapp.com/" %>
-       <% tweet_text = "#{app_name}\n私のクイズのスコア（#{I18n.t('quiz_levels.' + @quiz.level)}）は#{@correct_answers_count} / #{@quiz.questions.count}でした！\n#{app_url}" %>
+      <% tweet_text = "#{app_name}\n私のクイズのスコア（#{I18n.t('quiz_levels.' + @quiz.level)}）は#{@correct_answers_count} / #{@quiz.questions.count}でした！\n#{app_url}" %>
       <%= link_to "結果をTwitterで共有する", "https://twitter.com/intent/tweet?text=#{CGI.escape(tweet_text)}", target: "_blank", class: "btn btn-primary" %>
 
       <% score_percentage = (@correct_answers_count.to_f / @quiz.questions.count) * 100 %>

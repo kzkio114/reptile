@@ -37,3 +37,5 @@ end
 
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'byebug'
+
+gem 'pad_character', '~> 0.1.0'
