@@ -1,0 +1,46 @@
+<div class="container mt-5 mb-3">
+  <div class="row justify-content-center"> <!-- 中央に配置 -->
+    <div class="col-12 col-md-8 bg-dark text-white p-3 rounded text-center"> <!-- 背景とテキストの色を設定し、中央に配置 -->
+      <h1 class="text-danger">マニアック！！</h1>
+      <p>多分、初見だと満点きついと思います！</p>
+      <%= link_to 'クイズを開始する', '#', id: 'startQuizBtn', class: 'btn btn-primary' %>
+    </div>
+  </div>
+</div>
+<div id="customModal" class="custom-modal" style="display:none;">
+  <div class="custom-modal-content">
+    <span class="custom-modal-close">&times;</span>
+    <p>トカゲの写真も出るよ！！準備はいい？</p>
+    <%= link_to 'はい', quiz_question_path(@quiz, @quiz.questions.first), class: 'btn btn-primary' %>
+    <%= link_to 'いいえ', root_path, class: 'btn btn-secondary' %>
+  </div>
+</div>
+
+<!-- 既存のHTMLコード -->
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function () {
+  var modal = document.getElementById("customModal");
+  var startQuizBtn = document.getElementById("startQuizBtn");
+  var span = document.getElementsByClassName("custom-modal-close")[0];
+  var closeBtn = document.getElementById("customModalClose");
+
+  startQuizBtn.onclick = function() {
+    modal.style.display = "block";
+    return false; // デフォルトの動作を防ぐ
+  }
+
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  closeBtn.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+});
+</script>

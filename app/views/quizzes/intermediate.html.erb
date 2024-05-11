@@ -1,0 +1,46 @@
+<!-- app/views/quizzes/intermediate.html.erb -->
+<div class="container mt-5 mb-3">
+  <div class="row justify-content-center"> <!-- 中央に配置 -->
+    <div class="col-12 col-md-8 bg-dark text-white p-3 rounded text-center"> <!-- 背景とテキストの色を設定し、中央に配置 -->
+      <h1 class="text-danger">この爬虫類は何でしょう？？</h1>
+      <p>ここでは、爬虫類の名前を当てるクイズです！！</p>
+      <p> フォームに、カタカナで直接記載してね！！</p>
+      <p>＊ヒント＊   わからなかったら、画像の名前を注目してね！！</p>
+      <%= link_to 'クイズを開始する', '#', id: 'startQuizBtn', class: 'btn btn-primary' %>
+    </div>
+  </div>
+</div>
+
+<div id="customModal" class="custom-modal" style="display:none;">
+  <div class="custom-modal-content">
+    <span class="custom-modal-close">&times;</span>
+    <p>爬虫類の写真が出るますが進みますか？？</p>
+    <!-- リンクやボタンをここに追加 -->
+    <%= link_to 'はい',quiz_question_path(@quiz, @quiz.questions.first), class: 'btn btn-primary' %>
+    <%= link_to 'いいえ', root_path, class: 'btn btn-secondary' %>
+  </div>
+</div>
+
+<!-- 既存のHTMLコード -->
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function () {
+    var modal = document.getElementById("customModal");
+    var startQuizBtn = document.getElementById("startQuizBtn"); // クイズ開始ボタン
+    var span = document.getElementsByClassName("custom-modal-close")[0];
+
+    startQuizBtn.onclick = function() {
+      modal.style.display = "block";
+      return false; // デフォルトの動作を防ぐ
+    }
+
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  });
+</script>

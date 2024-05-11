@@ -1,0 +1,107 @@
+<%# app/views/questions/show.html.erb %>
+<head>
+  <!-- 他のスタイルやメタタグ -->
+  <style>
+    #astro-image {
+      width: 700px; /* 幅を700pxに設定 */
+      height: 400px; /* 高さを400pxに設定 */
+      display: block;
+      margin: 0 auto;
+    }
+    #alert-container {
+      position: absolute; /* ページの最下部に配置する */
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+  </style>
+</head>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8 bg-dark text-white p-3 rounded">
+      <h1 class="text-primary bg-dark text-white p-2 text-center"><%= @question.content %></h1>
+        
+        <% if @quiz.level == 'astro' && @question.image_url.present? %>
+        <!-- アストロレベルの画像表示 -->
+        <%= image_tag @question.image_url, class: 'img-fluid d-block mx-auto', id: 'astro-image' %>
+        <div id="alert-container"></div>
+        <!-- アストロレベルのJavaScript処理 -->
+        <script>
+          document.addEventListener('DOMContentLoaded', () => {
+            const image = document.getElementById('astro-image');
+            const alertContainer = document.getElementById('alert-container');
+
+            image.addEventListener('click', (e) => {
+              const rect = image.getBoundingClientRect();
+              const x = e.clientX - rect.left;
+              const y = e.clientY - rect.top;
+
+              console.log(`Clicked at X: ${x}, Y: ${y}`);
+
+              // ERBタグを使ってRuby変数をJavaScript変数に代入
+              const correctX1 = <%= @question.correct_x1.to_json %>;
+              const correctX2 = <%= @question.correct_x2.to_json %>;
+              const correctY1 = <%= @question.correct_y1.to_json %>;
+              const correctY2 = <%= @question.correct_y2.to_json %>;
+
+              if (x >= correctX1 && x <= correctX2 && y >= correctY1 && y <= correctY2) {
+                alertContainer.innerHTML = '<div class="alert alert-success">正解です！</div>';
+                setTimeout(() => {
+                  document.getElementById('clicked_x').value = x;
+                  document.getElementById('clicked_y').value = y;
+                  document.getElementById('hidden-form').submit();
+                }, 1000);
+              } else {
+                alertContainer.innerHTML = '<div class="alert alert-danger">不正解です。</div>';
+              }
+            });
+          });
+        </script>
+      <% elsif @question.image_url.present? && @quiz.level == 'intermediate' %>
+          <!-- 中級レベルの画像表示 -->
+          <%= image_tag @question.image_url, class: 'img-fluid d-block mx-auto', style: 'width: 90%; height: auto; margin-bottom: 11px;' %>
+          <!-- 中級レベルの質問に対するテキストフィールド回答フォーム -->
+          <%= form_with url: answer_quiz_question_path(@quiz, @question), method: :post, class: 'form-group text-center' do |form| %>
+            <%= form.hidden_field :question_id, value: @question.id %>
+            <%= form.text_field :answer, placeholder: "答えを入力" %>
+            <%= form.submit "回答する" %>
+          <% end %>
+        <% elsif @question.image_url.present? %>
+          <!-- 通常レベルの画像表示 -->
+          <%= image_tag @question.image_url, class: 'img-fluid d-block mx-auto' %>
+        <% else %>
+          <p class="text-secondary text-center custom-text"></p>
+        <% end %>
+
+        <%# "次へ"ボタンはアストロレベルのときのみ表示 %>
+        <% if @quiz.level == 'astro' %>
+          <% if @next_question %>
+            <%= link_to '見つけられなかった人はここを押してね！', quiz_question_path(@quiz, @next_question), class: 'btn btn-primary mt-3 d-block mx-auto' %>
+          <% else %>
+            <%= link_to '最終問題だよ！見つけられなかった人はここを押してね！', astro_results_quiz_path(@quiz), class: 'btn btn-primary mt-3 d-block mx-auto' %>
+          <% end %>
+        <% end %>
+
+        <% if @quiz.level == 'astro' %>
+          <%= form_with url: answer_quiz_question_path(@quiz, @question), method: :post, id: 'hidden-form' do |form| %>
+            <%= form.hidden_field :clicked_x, id: 'clicked_x' %>
+            <%= form.hidden_field :clicked_y, id: 'clicked_y' %>
+          <% end %>
+        <% elsif @quiz.level != 'intermediate' %>
+          <%# アストロレベルの質問でなければ、選択肢と送信ボタンを表示 %>
+          <%= form_with url: answer_quiz_question_path(@quiz, @question), method: :post, class: 'form-group text-center' do |form| %>
+            <div class="d-flex justify-content-center flex-wrap">
+              <% @question.choices.each do |choice| %>
+                <div class="form-check bg-dark p-2 mx-2">
+                  <%= form.radio_button :answer, choice.id, class: 'form-check-input custom-radio', id: "answer_#{choice.id}" %>
+                  <%= form.label :answer, choice.content, value: choice.id, class: 'form-check-label text-white custom-text', for: "answer_#{choice.id}" %>
+                </div>
+              <% end %>
+            </div>
+            <%= form.submit '回答する', class: 'btn btn-primary mt-3 d-block mx-auto' %>
+          <% end %>
+        <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+2024-01-05 13:35:58.523 JST [13138] LOG:  starting PostgreSQL 14.10 (Homebrew) on aarch64-apple-darwin23.0.0, compiled by Apple clang version 15.0.0 (clang-1500.0.40.1), 64-bit
+2024-01-05 13:35:58.524 JST [13138] LOG:  listening on IPv6 address "::1", port 5432
+2024-01-05 13:35:58.524 JST [13138] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-01-05 13:35:58.524 JST [13138] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2024-01-05 13:35:58.526 JST [13139] LOG:  database system was shut down at 2024-01-05 13:35:19 JST
+2024-01-05 13:35:58.527 JST [13138] LOG:  database system is ready to accept connections
+2024-01-05 13:36:48.936 JST [13165] FATAL:  database "myapp_development" does not exist
+2024-01-05 13:39:51.963 JST [13236] ERROR:  database "myapp_development" already exists
+2024-01-05 13:39:51.963 JST [13236] STATEMENT:  CREATE DATABASE "myapp_development" ENCODING = 'unicode'
+2024-01-05 13:39:51.967 JST [13237] ERROR:  database "myapp_test" already exists
+2024-01-05 13:39:51.967 JST [13237] STATEMENT:  CREATE DATABASE "myapp_test" ENCODING = 'unicode'
+2024-01-05 13:39:58.867 JST [13251] ERROR:  relation "quizzes" does not exist at character 25
+2024-01-05 13:39:58.867 JST [13251] STATEMENT:  SELECT "quizzes".* FROM "quizzes"
+2024-01-05 13:41:37.781 JST [13251] ERROR:  relation "questions" does not exist at character 27
+2024-01-05 13:41:37.781 JST [13251] STATEMENT:  SELECT "questions".* FROM "questions"
+2024-01-05 13:41:49.227 JST [13251] ERROR:  relation "quizzes" does not exist at character 25
+2024-01-05 13:41:49.227 JST [13251] STATEMENT:  SELECT "quizzes".* FROM "quizzes"
+2024-01-05 14:08:50.647 JST [13138] LOG:  received smart shutdown request
+2024-01-05 14:09:33.204 JST [13251] FATAL:  terminating connection due to unexpected postmaster exit

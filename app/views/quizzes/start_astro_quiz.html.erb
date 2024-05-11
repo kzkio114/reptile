@@ -1,0 +1,11 @@
+<!-- app/views/quizzes/start_astro_quiz.html.erb -->
+<div class="container mt-5 mb-3">
+  <div class="row justify-content-center"> <!-- 中央に配置 -->
+    <div class="col-12 col-md-8 bg-dark text-white p-3 rounded text-center"> <!-- 背景とテキストの色を設定し、中央に配置 -->
+     <h1 class="text-danger mb-3">アストロ君を探してね！！！</h1>
+     <p class="mb-3">この子が隠れてるので探してね！！！！</p>
+     <%= image_tag("asutoro.jpg", alt: "Beginner Image", class: "img-fluid") %>
+     <%= link_to 'クイズを開始する', quiz_question_path(@quiz, @quiz.questions.first), class: 'btn btn-primary mt-3 mb-3' %>
+    </div>
+  </div>
+</div> 
