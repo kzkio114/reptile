@@ -1,24 +1,29 @@
-# README
+# 【辰年なので、爬虫類に興味を持ちましょう！！】
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[![Image from Gyazo](https://i.gyazo.com/a2b6c2e2ccbab2444279d9f75f15fe09.png)](https://gyazo.com/a2b6c2e2ccbab2444279d9f75f15fe09)
 
-Things you may want to cover:
+## 概要
 
-* Ruby version
+趣味である爬虫類をスクール内の人に知ってもらうために、様々な形式のクイズアプリを作成しました。画像上でトカゲの位置をクリックして当てるクイズや、爬虫類の知識を問う初級・中級・上級のクイズ、さらに爬虫類の種類を当てるクイズを実装しています。楽しみながら爬虫類について学ぶことができるアプリです。
 
-* System dependencies
+## 工夫点
 
-* Configuration
+1. **画像クリックで正解判定**
+    
+    画像上で指定した座標をクリックすることで、トカゲの位置を正しく選択できる仕組みをJavaScriptで実装しました。直感的な操作が可能で、ユーザーが楽しみながら学べるようになっています。
+    
+2. **多様なクイズ形式**
+    
+    初級・中級・上級の知識クイズに加え、画像クリック形式や爬虫類の種類を当てるクイズなど、多彩なクイズ形式を用意。レベルに応じたクイズで学びを深めることができます。
+    
 
-* Database creation
+## 技術スタック
 
-* Database initialization
+| カテゴリー | 使用技術 |
+| --- | --- |
+| サーバーサイド | Ruby, Ruby on Rails |
+| フロントエンド | JavaScript |
+| データベース | PostgreSQL |
+| デプロイ環境 | Heroku |
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+---
