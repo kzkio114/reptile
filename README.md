@@ -1,6 +1,6 @@
 # 【辰年なので、爬虫類に興味を持ちましょう！！】
 
-[![Image from Gyazo](https://i.gyazo.com/a2b6c2e2ccbab2444279d9f75f15fe09.png)](https://gyazo.com/a2b6c2e2ccbab2444279d9f75f15fe09)
+<img width="1714" alt="e9b851b509b63f8d53df2375a4e0ee5a" src="https://github.com/user-attachments/assets/a589709e-027d-4918-a1ac-b31c06d21b94">
 
 ## 概要
 
